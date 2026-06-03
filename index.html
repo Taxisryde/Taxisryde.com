@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAXIRYDE - 24/7 Taxi Service Greenville SC</title>
+    <meta name="description" content="24/7 taxi service in Greenville SC. Call 864-362-6496. Get instant fare estimates.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #1a1a1a; color: white; line-height: 1.6; }
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 30px 0; background: #FFC107; color: #1a1a1a; border-radius: 15px 15px 0 0; }
+        .header h1 { font-size: 2.5rem; font-weight: 900; }
+        .header p { font-size: 1.1rem; font-weight: bold; margin-top: 5px; }
+        .content { background: #2d2d2d; padding: 30px; border-radius: 0 0 15px 15px; }
+        .call-btn { display: block; background: #28a745; color: white; text-align: center; padding: 25px; font-size: 1.8rem; font-weight: 900; text-decoration: none; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 10px rgba(40,167,69,0.4); }
+        .call-btn:active { transform: scale(0.98); }
+        .calc-box { background: #1a1a1a; padding: 25px; border-radius: 10px; margin: 25px 0; border: 2px solid #FFC107; }
+        .calc-box h2 { text-align: center; color: #FFC107; margin-bottom: 15px; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1.2rem; text-align: center; }
+        .calc-btn { width: 100%; background: #FFC107; color: #1a1a1a; padding: 15px; border: none; border-radius: 8px; font-size: 1.3rem; font-weight: 900; cursor: pointer; margin-top: 10px; }
+        #total { font-size: 2rem; font-weight: 900; text-align: center; margin-top: 20px; color: #28a745; min-height: 40px; }
+        .rates { text-align: center; margin: 25px 0; padding: 15px; background: #1a1a1a; border-radius: 8px; }
+        .rates p { margin: 5px 0; color: #ccc; }
+        .rates strong { color: #FFC107; }
+        .footer { text-align: center; margin-top: 30px; color: #888; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚖 TAXIRYDE</h1>
+            <p>24/7 SERVICE IN GREENVILLE, SC</p>
+        </div>
+        
+        <div class="content">
+            <a href="tel:864-362-6496" class="call-btn">📞 CALL NOW: 864-362-6496</a>
+            
+            <div class="calc-box">
+                <h2>ESTIMATE YOUR RIDE</h2>
+                <input type="number" id="miles" placeholder="Enter trip miles" min="0" step="0.1">
+                <button class="calc-btn" onclick="calculateFare()">GET PRICE</button>
+                <div id="total"></div>
+            </div>
+            
+            <div class="rates">
+                <p><strong>Base Fare:</strong> $2.50</p>
+                <p><strong>Per Mile:</strong> $2.10</p>
+                <p><strong>Available:</strong> 24 hours / 7 days</p>
+            </div>
+            
+            <div class="footer">
+                <p>TAXIRYDE - Your trusted taxi in Greenville SC</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateFare() {
+            const miles = parseFloat(document.getElementById('miles').value);
+            const totalDiv = document.getElementById('total');
+            
+            if (isNaN(miles) || miles <= 0) {
+                totalDiv.innerHTML = 'Enter valid miles';
+                totalDiv.style.color = '#dc3545';
+                return;
+            }
+            
+            const price = 2.50 + (miles * 2.10);
+            totalDiv.innerHTML = 'TOTAL: $' + price.toFixed(2);
+            totalDiv.style.color = '#28a745';
+        }
+        
+        document.getElementById('miles').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateFare();
+        });
+    </script>
+</body>
+</html>
