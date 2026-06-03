@@ -29,16 +29,16 @@
 </head>
 <body>
     <div class="header-logo">TAXISRYDE 24/7</div>
-   
+    
     <div class="top-bar">
         <input id="search-input" type="text" placeholder="¿A dónde vamos? Busca o arrastra el pin">
     </div>
-   
+    
     <div id="map"></div>
 
     <div class="bottom-sheet">
         <div class="drag-handle"></div>
-       
+        
         <div class="service-type">
             <div class="service-icon">🚖</div>
             <div class="service-info">
@@ -59,12 +59,12 @@
     <script>
         let map, marker, geocoder, directionsService;
         let miUbicacion = { lat: 34.8526, lng: -82.3940 };
-        const aeropuerto = { lat: 34.8956, lng: -82.2189 }; // GSP Airport
+        const aeropuerto = { lat: 34.8956, lng: -82.2189 };
 
         function initMap() {
             geocoder = new google.maps.Geocoder();
             directionsService = new google.maps.DirectionsService();
-           
+            
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: miUbicacion,
@@ -86,7 +86,7 @@
 
             const input = document.getElementById("search-input");
             const searchBox = new google.maps.places.SearchBox(input);
-           
+            
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
                 if (places.length == 0) return;
@@ -96,7 +96,6 @@
                 updateLocation(miUbicacion);
             });
 
-            // Ubicación automática al abrir
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
                     miUbicacion = {
@@ -118,14 +117,12 @@
         }
 
         function updateLocation(latlng) {
-            // Actualizar dirección
             geocoder.geocode({ location: latlng }, (results, status) => {
                 if (status === "OK" && results[0]) {
                     document.getElementById("pickup-address").textContent = results[0].formatted_address;
                 }
             });
 
-            // Calcular precio estimado al aeropuerto
             directionsService.route({
                 origin: latlng,
                 destination: aeropuerto,
@@ -143,10 +140,9 @@
             });
         }
     </script>
-   
+    
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_3N7Nqz5W3z8z8z8z8z8&libraries=places&callback=initMap">
     </script>
 </body>
 </html>
-
